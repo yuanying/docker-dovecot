@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+sed -i "s/__REPLACE_DATABASE_HOST__/${MYSQL_PORT_3306_TCP_ADDR}/g" /etc/dovecot/dovecot-mysql.conf
+sed -i "s/__REPLACE_DATABASE_PORT__/${MYSQL_PORT_3306_TCP_PORT}/g" /etc/dovecot/dovecot-mysql.conf
+sed -i "s/__REPLACE_DATABASE_PASSWORD__/${POSTFIX_MYSQL_PASSWORD}/g" /etc/dovecot/dovecot-mysql.conf
+
+/usr/sbin/dovecot -F -c /etc/dovecot/dovecot.conf
